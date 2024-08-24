@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 2778245286964424676}
   - component: {fileID: 1041847567586418175}
   - component: {fileID: 6126837382394660861}
-  - component: {fileID: 943797627650418607}
   - component: {fileID: 142360799226365167}
+  - component: {fileID: 5179554667091224927}
   m_Layer: 0
   m_Name: Dog
   m_TagString: Untagged
@@ -36,7 +36,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1550347580526933518
 SpriteRenderer:
@@ -180,6 +180,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c6a25623db7c846add39bf4dd07d0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _health: {fileID: 0}
+  _damage: 20
 --- !u!114 &6126837382394660861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,19 +195,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxValue: 100
---- !u!114 &943797627650418607
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5074838664524980417}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99e9fd45ff7d1d34f889b93b6f5ed0dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AttackDistance: 1
 --- !u!114 &142360799226365167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,7 +207,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e88131b7a52820548a22188b7fcfa8b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 1
-  Positions:
-  - {fileID: 0}
-  - {fileID: 0}
+  _speed: 1
+  _spriteRenderer: {fileID: 0}
+  _positions: []
+--- !u!114 &5179554667091224927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5074838664524980417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81d7d8a24ff0f4e4e8cfc379215ca185, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _detectionRadius: 1.5
