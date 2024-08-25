@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private const float _rotationParameter = 180f;
+    private const float RotationParameter = 180f;
 
     public readonly int Speed = Animator.StringToHash(nameof(Speed));
 
@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
         if (_inputReader.Direction > 0)
             transform.rotation = Quaternion.identity;
         else if (_inputReader.Direction < 0)
-            transform.rotation = Quaternion.Euler(0, _rotationParameter, 0);
+            transform.rotation = Quaternion.Euler(0, RotationParameter, 0);
     }
 
     private void Attack(Enemy enemy)

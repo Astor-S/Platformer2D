@@ -6,10 +6,12 @@ using UnityEngine;
 public class Picker : MonoBehaviour
 {
     private Wallet _wallet;
+    private Health _playerHealth;
 
     private void Awake()
     {
         _wallet = GetComponent<Wallet>();
+        _playerHealth = GetComponent<Health>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -25,11 +27,9 @@ public class Picker : MonoBehaviour
 
         if (other.gameObject.TryGetComponent(out AidKit aidKit))
         {
-            Health playerHealth = GetComponent<Health>();
-
-            if (playerHealth != null)
+            if (_playerHealth != null)
             {
-                playerHealth.Heal(aidKit.HealthPoints);
+                _playerHealth.Heal(aidKit.HealthPoints);
                 Destroy(aidKit.gameObject);
             }
         }

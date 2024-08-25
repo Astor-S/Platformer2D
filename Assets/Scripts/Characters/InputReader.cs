@@ -3,8 +3,8 @@ using UnityEngine;
 public class InputReader : MonoBehaviour
 {
     public const string Horizontal = "Horizontal";
-    public KeyCode JumpKey = KeyCode.W;
-
+    
+    private KeyCode JumpKey = KeyCode.W;
     private bool _isJump;
 
     public float Direction { get; private set; }

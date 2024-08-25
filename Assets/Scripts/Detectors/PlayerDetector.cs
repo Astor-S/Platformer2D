@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerDetector : MonoBehaviour
 {
-    private const float _rotationParameter = 180f;
+    private const float RotationParameter = 180f;
 
     [SerializeField] private LayerMask _playerLayerMask;
     [SerializeField] private float _detectionRadius = 1.5f;
@@ -35,6 +35,6 @@ public class PlayerDetector : MonoBehaviour
         if (direction.x > 0)
             transform.rotation = Quaternion.identity;
         else
-            transform.rotation = Quaternion.Euler(0, _rotationParameter, 0);
+            transform.rotation = Quaternion.Euler(0, RotationParameter, 0);
     }
 }

@@ -1,14 +1,14 @@
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerDetector))]
-[RequireComponent(typeof(Patrolling))]
+[RequireComponent(typeof(Patroller))]
 
 public class Enemy : MonoBehaviour 
 {
     [SerializeField] private Health _health;
     [SerializeField] private float _damage = 20f;
     private PlayerDetector _playerDetection;
-    private Patrolling _patrolling;
+    private Patroller _patrolling;
 
     public Health Health => _health;
     public bool IsAlive => _health.CurrentHealth > 0;
@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         _playerDetection = GetComponent<PlayerDetector>();
-        _patrolling = GetComponent<Patrolling>();
+        _patrolling = GetComponent<Patroller>();
     }
 
     private void Update()

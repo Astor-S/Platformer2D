@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class Patrolling : MonoBehaviour
+public class Patroller : MonoBehaviour
 {
     private const float MinDistanceThreshold = 0.1f;
-    private const float _rotationParameter = 180f;
+    private const float RotationParameter = 180f;
 
     [SerializeField] private float _speed = 1f;
     [SerializeField] private SpriteRenderer _spriteRenderer;
@@ -52,7 +52,7 @@ public class Patrolling : MonoBehaviour
     private void Flip()
     {
         if (_positions[_currentPosition].position.x > transform.position.x)
-            transform.rotation = Quaternion.Euler(0, _rotationParameter, 0);
+            transform.rotation = Quaternion.Euler(0, RotationParameter, 0);
         else
             transform.rotation = Quaternion.identity;
     }
