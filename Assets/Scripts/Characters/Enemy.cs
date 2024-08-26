@@ -1,37 +1,26 @@
 using UnityEngine;
 
-[RequireComponent(typeof(PlayerDetector))]
-[RequireComponent(typeof(Patroller))]
+[RequireComponent(typeof(EnemyMover))]
 
 public class Enemy : MonoBehaviour 
 {
     [SerializeField] private Health _health;
     [SerializeField] private float _damage = 20f;
-    private PlayerDetector _playerDetection;
-    private Patroller _patrolling;
+    private EnemyMover _enemyMover;
 
     public Health Health => _health;
     public bool IsAlive => _health.CurrentHealth > 0;
 
-    private void Start()
+    private void Awake()
     {
-        _playerDetection = GetComponent<PlayerDetector>();
-        _patrolling = GetComponent<Patroller>();
+        _enemyMover = GetComponent<EnemyMover>();
     }
 
     private void Update()
     {
         ApplyDeath();
 
-        if (_playerDetection.IsPlayerDetected)
-        {
-            _patrolling.StopPatrol();
-            transform.position = Vector2.MoveTowards(transform.position, _playerDetection.PlayerTransform.position, _patrolling.Speed * Time.deltaTime);
-        }
-        else
-        {
-            _patrolling.ResumePatrol();
-        }
+        _enemyMover.Move();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

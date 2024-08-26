@@ -2,13 +2,11 @@ using UnityEngine;
 
 public class PlayerDetector : MonoBehaviour
 {
-    private const float RotationParameter = 180f;
-
     [SerializeField] private LayerMask _playerLayerMask;
     [SerializeField] private float _detectionRadius = 1.5f;
-    private bool _isPlayerDetected = false;
     private Transform _playerTransform;
-
+    private bool _isPlayerDetected = false;
+    
     public Transform PlayerTransform => _playerTransform;
     public bool IsPlayerDetected => _isPlayerDetected;
 
@@ -20,21 +18,11 @@ public class PlayerDetector : MonoBehaviour
         {
             _playerTransform = hit.transform;
             _isPlayerDetected = true;
-            Flip();
         }
         else
         {
             _isPlayerDetected = false;
+            _playerTransform = null;
         }
-    }
-
-    private void Flip()
-    {
-        Vector2 direction = _playerTransform.position - transform.position;
-
-        if (direction.x > 0)
-            transform.rotation = Quaternion.identity;
-        else
-            transform.rotation = Quaternion.Euler(0, RotationParameter, 0);
     }
 }

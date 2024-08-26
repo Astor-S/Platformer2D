@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private const float RotationParameter = 180f;
-
     public readonly int Speed = Animator.StringToHash(nameof(Speed));
 
     [SerializeField] private InputReader _inputReader;
@@ -23,8 +21,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Flip();
-        
+        _mover.Flip(_inputReader.Direction);
         _mover.Move(_inputReader.Direction);
 
         if (_inputReader.GetIsJump() && _groundDetector.IsGround)
@@ -37,14 +34,6 @@ public class Player : MonoBehaviour
     {
         if ((collision.gameObject.TryGetComponent(out Enemy enemy)))
             Attack(enemy);
-    }
-
-    private void Flip()
-    {
-        if (_inputReader.Direction > 0)
-            transform.rotation = Quaternion.identity;
-        else if (_inputReader.Direction < 0)
-            transform.rotation = Quaternion.Euler(0, RotationParameter, 0);
     }
 
     private void Attack(Enemy enemy)

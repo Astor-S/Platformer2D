@@ -222,4 +222,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81d7d8a24ff0f4e4e8cfc379215ca185, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerLayerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  _mover: {fileID: 0}
   _detectionRadius: 1.5

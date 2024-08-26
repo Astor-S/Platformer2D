@@ -354,6 +354,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35860f16e8f42004ba2c627099ed787e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &198978957 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2191712326203993683, guid: a18bca88ec6334647be231143cc8d93f, type: 3}
+  m_PrefabInstance: {fileID: 5505398112456893125}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 59866606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b010933e2e07c904d9f0fc6dfd17c04c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &202850490
 GameObject:
   m_ObjectHideFlags: 0
@@ -1966,6 +1977,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 930279773}
     - target: {fileID: 1550347580526933518, guid: 093a40a5350d8f34a9df6334e7d5ac85, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1550347580526933518, guid: 093a40a5350d8f34a9df6334e7d5ac85, type: 3}
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
@@ -2025,6 +2040,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dog
       objectReference: {fileID: 0}
+    - target: {fileID: 5179554667091224927, guid: 093a40a5350d8f34a9df6334e7d5ac85, type: 3}
+      propertyPath: _mover
+      value: 
+      objectReference: {fileID: 198978957}
     - target: {fileID: 5179554667091224927, guid: 093a40a5350d8f34a9df6334e7d5ac85, type: 3}
       propertyPath: _spriteRenderer
       value: 
