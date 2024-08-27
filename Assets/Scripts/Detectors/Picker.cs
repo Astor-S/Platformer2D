@@ -2,7 +2,6 @@ using UnityEngine;
 
 [RequireComponent(typeof(Wallet))]
 [RequireComponent(typeof(Health))]
-
 public class Picker : MonoBehaviour
 {
     private Wallet _wallet;
@@ -18,20 +17,14 @@ public class Picker : MonoBehaviour
     {
         if (other.gameObject.TryGetComponent(out Coin coin))
         {
-            if (_wallet != null)
-            {
                 _wallet.AddCoins(coin.CoinValue);
                 Destroy(coin.gameObject);
-            }
         }
 
         if (other.gameObject.TryGetComponent(out AidKit aidKit))
         {
-            if (_playerHealth != null)
-            {
                 _playerHealth.Heal(aidKit.HealthPoints);
                 Destroy(aidKit.gameObject);
-            }
         }
     }
 }

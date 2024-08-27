@@ -10,6 +10,7 @@ public class Health : MonoBehaviour
     public float Value { get; private set; }
     public float MaxValue => _maxValue;
     public float CurrentHealth => Value;
+    public bool IsAlive => CurrentHealth > 0;
 
     private void Start()
     {
@@ -30,11 +31,21 @@ public class Health : MonoBehaviour
             throw new ArgumentOutOfRangeException(nameof(damage));
 
         UpdateValue(Value - damage);
+        
+        if (Value <= 0)
+            ApplyDeath();
     }
+
 
     private void UpdateValue(float value)
     {
         Value = Mathf.Clamp(value, 0, _maxValue);
         ValueChanged?.Invoke();
+    }
+
+    private void ApplyDeath()
+    {
+        if (IsAlive == false)
+            Destroy(gameObject);
     }
 }

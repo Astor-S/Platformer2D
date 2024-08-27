@@ -1,43 +1,58 @@
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(EnemyMover))]
-
 public class Enemy : MonoBehaviour 
 {
     [SerializeField] private Health _health;
-    [SerializeField] private float _damage = 20f;
+    [SerializeField] private Attacker _attacker;
     private EnemyMover _enemyMover;
 
-    public Health Health => _health;
-    public bool IsAlive => _health.CurrentHealth > 0;
+    private Coroutine _coroutine;
+    private WaitForSeconds _wait;
+    private float _delay = 2f;
+    private bool _isCooldown = false;
 
     private void Awake()
     {
         _enemyMover = GetComponent<EnemyMover>();
+        _wait = new WaitForSeconds(_delay);
     }
 
     private void Update()
     {
-        ApplyDeath();
-
         _enemyMover.Move();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if ((collision.gameObject.TryGetComponent(out Player player)))
-            Attack(player);
+            
+            if (_isCooldown == false)
+            {
+                _coroutine = StartCoroutine(AttackCooldown());
+                _attacker.Attack(player.TakeDamage());
+            }
     }
 
-    private void Attack(Player player)
+    private void OnCollisionExit2D(Collision2D collision)
     {
-        if (player.Health != null)
-            player.Health.TakeDamage(_damage);
+        if ((collision.gameObject.TryGetComponent(out Player player)))
+        {
+            StopCoroutine(_coroutine);
+            _isCooldown = false;
+        }
     }
 
-    private void ApplyDeath()
+    public Health TakeDamage()
     {
-        if (IsAlive == false)
-            Destroy(gameObject);
+        return _health;
+    }
+
+    private IEnumerator AttackCooldown()
+    {
+        _isCooldown = true;
+        yield return _wait;
+        _isCooldown = false;
     }
 }

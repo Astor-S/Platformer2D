@@ -4,11 +4,9 @@ public class PlayerDetector : MonoBehaviour
 {
     [SerializeField] private LayerMask _playerLayerMask;
     [SerializeField] private float _detectionRadius = 1.5f;
-    private Transform _playerTransform;
-    private bool _isPlayerDetected = false;
-    
-    public Transform PlayerTransform => _playerTransform;
-    public bool IsPlayerDetected => _isPlayerDetected;
+ 
+    public Transform PlayerTransform {get; private set;}
+    public bool IsPlayerDetected {get; private set;}
 
     private void FixedUpdate()
     {
@@ -16,13 +14,13 @@ public class PlayerDetector : MonoBehaviour
 
         if (hit.collider != null)
         {
-            _playerTransform = hit.transform;
-            _isPlayerDetected = true;
+            PlayerTransform = hit.transform;
+            IsPlayerDetected = true;
         }
         else
         {
-            _isPlayerDetected = false;
-            _playerTransform = null;
+            IsPlayerDetected = false;
+            PlayerTransform = null;
         }
     }
 }

@@ -2,7 +2,6 @@ using UnityEngine;
 
 [RequireComponent(typeof(PlayerDetector))]
 [RequireComponent(typeof(Patroller))]
-
 public class EnemyMover : MonoBehaviour
 {
     [SerializeField] private float _speed = 1f;
@@ -23,7 +22,7 @@ public class EnemyMover : MonoBehaviour
 
         if (_playerDetection.IsPlayerDetected)
         {
-            _patrolling.StopPatrol();
+            _patrolling.StopPatrol(false);
             targetPoint = _playerDetection.PlayerTransform.position;
             Flip(_playerDetection.PlayerTransform.position);
         }

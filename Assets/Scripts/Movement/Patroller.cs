@@ -10,29 +10,13 @@ public class Patroller : MonoBehaviour
     private int _startPosition = 0;
     private int _currentPosition = 0;
     
-    private bool _isPatrolling = true;
-
     public Vector2 GetCurrentPoint()
     {
-        if (Vector2.Distance(transform.position, _positions[_currentPosition].position) < MinDistanceThreshold)
-        {
-
-            if (_currentPosition < _positions.Length - 1)
-                _currentPosition++;
-            else
-                _currentPosition = _startPosition;
-        }
-
+        if ((transform.position - _positions[_currentPosition].position).sqrMagnitude < MinDistanceThreshold * MinDistanceThreshold)
+            _currentPosition = _startPosition++ % _positions.Length;
+        
         return _positions[_currentPosition].position;
     }
 
-    public void StopPatrol()
-    {
-        _isPatrolling = false;
-    }
-
-    public void ResumePatrol()
-    {
-        _isPatrolling = true;
-    }
+    public void StopPatrol(bool isPatrolling) {}
 }
