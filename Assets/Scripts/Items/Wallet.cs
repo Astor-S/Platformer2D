@@ -11,6 +11,7 @@ public class Wallet : MonoBehaviour
 
     public void AddCoins(int amount)
     {
-        _coins += amount;
+        if(_coins > 0)
+            _coins += amount;
     }
 }

@@ -9,7 +9,7 @@ public class Patroller : MonoBehaviour
 
     private int _startPosition = 0;
     private int _currentPosition = 0;
-    
+ 
     public Vector2 GetCurrentPoint()
     {
         if ((transform.position - _positions[_currentPosition].position).sqrMagnitude < MinDistanceThreshold * MinDistanceThreshold)
@@ -17,6 +17,4 @@ public class Patroller : MonoBehaviour
         
         return _positions[_currentPosition].position;
     }
-
-    public void StopPatrol(bool isPatrolling) {}
 }

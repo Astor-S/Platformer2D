@@ -4,7 +4,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     [SerializeField] private List<SpawnPoint> _spawnPoints;
-    [SerializeField] private List<int> _availableIndexes;
+    [SerializeField] private List<SpawnPoint> _spawnPointsAidKit;
 
     private void Start()
     {
@@ -27,17 +27,17 @@ public class Spawner : MonoBehaviour
         int minRange = 0;
         int maxRange = 2;
 
-        int kitsToSpawn = Random.Range(minCount, _availableIndexes.Count);
+        int kitsToSpawn = Random.Range(minCount, _spawnPointsAidKit.Count);
 
         for (int i = 0; i < kitsToSpawn; i++)
         {
-            int randomIndex = Random.Range(minRange, maxRange);
+            int randomPoint = Random.Range(minRange, maxRange);
 
-            int spawnPointIndex = _availableIndexes[randomIndex];
+            SpawnPoint spawnPoint = _spawnPointsAidKit[randomPoint];
 
-            Instantiate(_spawnPoints[spawnPointIndex].ItemPrefab, _spawnPoints[spawnPointIndex].Position.position, Quaternion.identity);
+            Instantiate(spawnPoint.ItemPrefab, spawnPoint.Position.position, Quaternion.identity);
 
-            _availableIndexes.RemoveAt(randomIndex);
+            _spawnPointsAidKit.RemoveAt(randomPoint);
         }
     }
 }

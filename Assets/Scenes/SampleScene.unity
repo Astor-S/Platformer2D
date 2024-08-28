@@ -2142,7 +2142,10 @@ MonoBehaviour:
   - {fileID: 935740620}
   - {fileID: 1065613764}
   - {fileID: 660998054}
-  _availableIndexes: 050000000600000007000000
+  _spawnPointsAidKit:
+  - {fileID: 935740620}
+  - {fileID: 1065613764}
+  - {fileID: 660998054}
 --- !u!4 &1608909651
 Transform:
   m_ObjectHideFlags: 0
