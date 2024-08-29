@@ -39,19 +39,14 @@ public abstract class CombatCharacter : MonoBehaviour
         }
     }
 
-    private void ReceiveDamage(float damage)
-    {
-        _health.TakeDamage(damage);
-    }
-
     private IEnumerator AttackCooldown(CombatCharacter target)
     {
         _isCooldown = true;
 
         while (_isCooldown)
         {
-            _attacker.Attack(target.ReceiveDamage());
-            
+           _attacker.Attack((target._health));
+        
             yield return _wait;
         }
     }

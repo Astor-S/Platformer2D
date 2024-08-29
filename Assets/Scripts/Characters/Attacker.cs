@@ -4,8 +4,10 @@ public class Attacker : MonoBehaviour
 {
     [SerializeField] private float _damage;
 
-    public void Attack(Health targetHealth)
+    public float Attack(Health targetHealth)
     {
             targetHealth.TakeDamage(_damage);
+        
+            return _damage;
     }
 }
