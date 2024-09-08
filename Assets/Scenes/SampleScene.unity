@@ -1356,7 +1356,7 @@ MonoBehaviour:
   _slider: {fileID: 643933993}
   _targetCanvas: {fileID: 550862939}
   _followedObject: {fileID: 198978939}
-  _fillingSpeed: 0.2
+  _fillingSpeed: 0.5
 --- !u!114 &643933993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3147,7 +3147,7 @@ MonoBehaviour:
   _slider: {fileID: 1720073194}
   _targetCanvas: {fileID: 853108753}
   _followedObject: {fileID: 930279789}
-  _fillingSpeed: 0.2
+  _fillingSpeed: 0.5
 --- !u!114 &1720073194
 MonoBehaviour:
   m_ObjectHideFlags: 0
