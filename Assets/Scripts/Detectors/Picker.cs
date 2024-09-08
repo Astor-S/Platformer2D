@@ -4,6 +4,9 @@ using UnityEngine;
 [RequireComponent(typeof(Health))]
 public class Picker : MonoBehaviour
 {
+    [SerializeField] private AudioClip _coinPickupSound;
+    [SerializeField] private AudioClip _aidKitPickupSound;
+    
     private Wallet _wallet;
     private Health _playerHealth;
 
@@ -17,14 +20,18 @@ public class Picker : MonoBehaviour
     {
         if (other.gameObject.TryGetComponent(out Coin coin))
         {
-                _wallet.AddCoins(coin.CoinValue);
-                Destroy(coin.gameObject);
+            AudioSource.PlayClipAtPoint(_coinPickupSound, transform.position);
+            
+            _wallet.AddCoins(coin.CoinValue);
+            Destroy(coin.gameObject);
         }
 
         if (other.gameObject.TryGetComponent(out AidKit aidKit))
         {
-                _playerHealth.Heal(aidKit.HealthPoints);
-                Destroy(aidKit.gameObject);
+            AudioSource.PlayClipAtPoint(_aidKitPickupSound, transform.position);
+            
+            _playerHealth.Heal(aidKit.HealthPoints);
+            Destroy(aidKit.gameObject);
         }
     }
 }

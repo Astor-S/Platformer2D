@@ -4,8 +4,9 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [SerializeField] private float _maxValue;
+    private float _minValue = 0;
 
-    public event Action ValueChanged;
+    public event Action<float, float> ValueChanged;
 
     public float Value { get; private set; }
     public float MaxValue => _maxValue;
@@ -22,7 +23,8 @@ public class Health : MonoBehaviour
         if (value < 0)
             throw new ArgumentOutOfRangeException(nameof(value));
 
-        UpdateValue(Value + value);
+        float newHealth = Mathf.Min(Value + value, MaxValue);
+        UpdateValue(newHealth);
     }
 
     public void TakeDamage(float damage)
@@ -30,17 +32,17 @@ public class Health : MonoBehaviour
         if (damage < 0)
             throw new ArgumentOutOfRangeException(nameof(damage));
 
-        UpdateValue(Value - damage);
-        
+        float newHealth = Mathf.Max(Value - damage, _minValue);
+        UpdateValue(newHealth);
+
         if (Value <= 0)
             ApplyDeath();
     }
 
-
     private void UpdateValue(float value)
     {
-        Value = Mathf.Clamp(value, 0, _maxValue);
-        ValueChanged?.Invoke();
+        Value = value;
+        ValueChanged?.Invoke(value, _maxValue);
     }
 
     private void ApplyDeath()
