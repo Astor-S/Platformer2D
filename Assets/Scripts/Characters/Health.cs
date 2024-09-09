@@ -10,15 +10,14 @@ public class Health : MonoBehaviour
 
     public float Value { get; private set; }
     public float MaxValue => _maxValue;
-    public float CurrentHealth => Value;
-    public bool IsAlive => CurrentHealth > 0;
+    public bool IsAlive => Value > 0;
 
     private void Start()
     {
         Value = MaxValue;
     }
 
-    public void Heal(float value)
+    public void TakeHeal(float value)
     {
         if (value < 0)
             throw new ArgumentOutOfRangeException(nameof(value));

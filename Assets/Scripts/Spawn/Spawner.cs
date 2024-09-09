@@ -25,19 +25,18 @@ public class Spawner : MonoBehaviour
     {
         int minCount = 1;
         int minRange = 0;
-        int maxRange = 2;
 
         int kitsToSpawn = Random.Range(minCount, _spawnPointsAidKit.Count);
 
         for (int i = 0; i < kitsToSpawn; i++)
         {
-            int randomPoint = Random.Range(minRange, maxRange);
+            int randomIndex = Random.Range(minRange, _spawnPointsAidKit.Count);
 
-            SpawnPoint spawnPoint = _spawnPointsAidKit[randomPoint];
+            SpawnPoint spawnPoint = _spawnPointsAidKit[randomIndex];
 
             Instantiate(spawnPoint.ItemPrefab, spawnPoint.Position.position, Quaternion.identity);
 
-            _spawnPointsAidKit.RemoveAt(randomPoint);
+            _spawnPointsAidKit.RemoveAt(randomIndex);
         }
     }
 }

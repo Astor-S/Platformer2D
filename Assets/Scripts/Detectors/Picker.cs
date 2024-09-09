@@ -22,7 +22,7 @@ public class Picker : MonoBehaviour
         {
             AudioSource.PlayClipAtPoint(_coinPickupSound, transform.position);
             
-            _wallet.AddCoins(coin.CoinValue);
+            _wallet.AddCoins(coin.Value);
             Destroy(coin.gameObject);
         }
 
@@ -30,7 +30,7 @@ public class Picker : MonoBehaviour
         {
             AudioSource.PlayClipAtPoint(_aidKitPickupSound, transform.position);
             
-            _playerHealth.Heal(aidKit.HealthPoints);
+            _playerHealth.TakeHeal(aidKit.HealthPoints);
             Destroy(aidKit.gameObject);
         }
     }
