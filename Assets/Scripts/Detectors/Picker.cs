@@ -18,20 +18,20 @@ public class Picker : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.TryGetComponent(out Coin coin))
+        if (other.gameObject.TryGetComponent(out Item item))
         {
-            AudioSource.PlayClipAtPoint(_coinPickupSound, transform.position);
-            
-            _wallet.AddCoins(coin.Value);
-            Destroy(coin.gameObject);
-        }
+            if (item is Coin coin)
+            {
+                AudioSource.PlayClipAtPoint(_coinPickupSound, transform.position);
+                _wallet.AddCoins(coin.Value);
+            }
+            else if (item is AidKit aidKit)
+            {
+                AudioSource.PlayClipAtPoint(_aidKitPickupSound, transform.position);
+                _playerHealth.TakeHeal(aidKit.HealthPoints);
+            }
 
-        if (other.gameObject.TryGetComponent(out AidKit aidKit))
-        {
-            AudioSource.PlayClipAtPoint(_aidKitPickupSound, transform.position);
-            
-            _playerHealth.TakeHeal(aidKit.HealthPoints);
-            Destroy(aidKit.gameObject);
+            Destroy(item.gameObject);
         }
     }
 }
