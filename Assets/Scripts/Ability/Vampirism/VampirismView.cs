@@ -32,8 +32,7 @@ public class VampirismView : MonoBehaviour
     private void ActivateView()
     {
         _vampirizeArea.gameObject.SetActive(true);
-        
-        StartCoroutine(UpdateCooldownDisplay());
+        StartCoroutine(UpdateCooldownBar());
     }
 
     private void DisactivateView()
@@ -42,7 +41,7 @@ public class VampirismView : MonoBehaviour
         StartCoroutine(FillCooldownSlider());
     }
 
-    private IEnumerator UpdateCooldownDisplay()
+    private IEnumerator UpdateCooldownBar()
     {
         float elapsedTime = 0f;
 
