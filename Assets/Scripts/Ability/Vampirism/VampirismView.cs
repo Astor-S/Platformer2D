@@ -61,14 +61,14 @@ public class VampirismView : MonoBehaviour
         _cooldownSlider.value = 0f;
         
         if (_cooldownSlider.value == 0f)
-            _cooldownSlider.fillRect.gameObject.SetActive(false);
+            _cooldownSlider.gameObject.SetActive(false);
     }
 
     private IEnumerator FillCooldownSlider()
     {
         yield return new WaitForSeconds(_delay);
 
-        _cooldownSlider.fillRect.gameObject.SetActive(true);
+        _cooldownSlider.gameObject.SetActive(true);
 
         float elapsedTime = 0f;
 
