@@ -71,7 +71,6 @@ public class Vampirism : MonoBehaviour
     private IEnumerator VampirismAbility(Enemy targetEnemy)
     {
         _currentTarget = targetEnemy;
-        Health enemyHealth = targetEnemy.Health;
 
         if (targetEnemy.Health == null)
             yield break;
@@ -87,7 +86,6 @@ public class Vampirism : MonoBehaviour
                 if (nearestEnemy != null)
                 {
                     _currentTarget = nearestEnemy;
-                    enemyHealth = nearestEnemy.Health;
 
                     if (targetEnemy.Health == null) 
                         yield break;
