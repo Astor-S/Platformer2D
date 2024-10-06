@@ -53,7 +53,8 @@ public class Vampirism : MonoBehaviour
 
         foreach (Enemy enemy in _detected.EnemyDetected)
         {
-            if (enemy == null) continue;
+            if (enemy == null)
+                continue;
 
             float distance = Vector2.Distance(transform.position, enemy.transform.position);
 
@@ -70,9 +71,10 @@ public class Vampirism : MonoBehaviour
     private IEnumerator VampirismAbility(Enemy targetEnemy)
     {
         _currentTarget = targetEnemy;
-        Health enemyHealth = targetEnemy.GetComponent<Health>();
+        Health enemyHealth = targetEnemy.Health;
 
-        if (enemyHealth == null) yield break;
+        if (targetEnemy.Health == null)
+            yield break;
 
         float elapsedTime = 0f;
 
@@ -85,19 +87,20 @@ public class Vampirism : MonoBehaviour
                 if (nearestEnemy != null)
                 {
                     _currentTarget = nearestEnemy;
-                    enemyHealth = nearestEnemy.GetComponent<Health>();
+                    enemyHealth = nearestEnemy.Health;
 
-                    if (enemyHealth == null) break;
+                    if (targetEnemy.Health == null) 
+                        yield break;
                 }
                 else
                 {
-                    break;
+                    yield break;
                 }
             }
 
             float drainAmount = _healthDrain * Time.deltaTime;
 
-            _currentTarget.GetComponent<Health>().TakeDamage(drainAmount);
+            _currentTarget.Health.TakeDamage(drainAmount);
             _health.TakeHeal(drainAmount);
             elapsedTime += Time.deltaTime;
 

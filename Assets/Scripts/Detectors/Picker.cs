@@ -1,20 +1,11 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Wallet))]
-[RequireComponent(typeof(Health))]
 public class Picker : MonoBehaviour
 {
+    [SerializeField] private Wallet _wallet;
+    [SerializeField] private Health _playerHealth;
     [SerializeField] private AudioClip _coinPickupSound;
     [SerializeField] private AudioClip _aidKitPickupSound;
-    
-    private Wallet _wallet;
-    private Health _playerHealth;
-
-    private void Awake()
-    {
-        _wallet = GetComponent<Wallet>();
-        _playerHealth = GetComponent<Health>();
-    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {

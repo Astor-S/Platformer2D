@@ -538,20 +538,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47cd175d531bdb2428de6ad0cdcb5eab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &198978951
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 59866606}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35860f16e8f42004ba2c627099ed787e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _coinPickupSound: {fileID: 8300000, guid: 352dc63d297ae6e43968af80b2f72af9, type: 3}
-  _aidKitPickupSound: {fileID: 8300000, guid: 8b5705cb1678a084e9c6e2eaec88f938, type: 3}
 --- !u!114 &198978957 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2191712326203993683, guid: a18bca88ec6334647be231143cc8d93f, type: 3}
@@ -616,10 +602,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _detected: {fileID: 198978987}
+  _vampirismKey: 118
   _healthDrain: 5
   _cooldown: 4.5
   _duration: 6
   _radiusDrain: 3
+--- !u!58 &198978994
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 59866606}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &202850490
 GameObject:
   m_ObjectHideFlags: 0
@@ -2150,6 +2172,7 @@ GameObject:
   - component: {fileID: 1140326689}
   - component: {fileID: 1140326690}
   - component: {fileID: 1140326691}
+  - component: {fileID: 1140326692}
   m_Layer: 3
   m_Name: PlayerView
   m_TagString: Untagged
@@ -2260,6 +2283,7 @@ MonoBehaviour:
   _vampirism: {fileID: 198978988}
   _vampirizeArea: {fileID: 449771748}
   _cooldownSlider: {fileID: 2000176009}
+  _delay: 0.5
 --- !u!61 &1140326691
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2305,6 +2329,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.18368244, y: 0.22150666}
   m_EdgeRadius: 0
+--- !u!114 &1140326692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140326686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35860f16e8f42004ba2c627099ed787e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _coinPickupSound: {fileID: 8300000, guid: 352dc63d297ae6e43968af80b2f72af9, type: 3}
+  _aidKitPickupSound: {fileID: 8300000, guid: 8b5705cb1678a084e9c6e2eaec88f938, type: 3}
+  _wallet: {fileID: 198978941}
+  _playerHealth: {fileID: 198978969}
 --- !u!114 &1154249486 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2430328555309833928, guid: 4ea0054572b8e9943a12cb8063dc70f4, type: 3}
@@ -5179,9 +5219,6 @@ PrefabInstance:
       addedObject: {fileID: 198978941}
     - targetCorrespondingSourceObject: {fileID: 658764085373533255, guid: a18bca88ec6334647be231143cc8d93f, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 198978951}
-    - targetCorrespondingSourceObject: {fileID: 658764085373533255, guid: a18bca88ec6334647be231143cc8d93f, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 198978966}
     - targetCorrespondingSourceObject: {fileID: 658764085373533255, guid: a18bca88ec6334647be231143cc8d93f, type: 3}
       insertIndex: -1
@@ -5189,4 +5226,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 658764085373533255, guid: a18bca88ec6334647be231143cc8d93f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 198978988}
+    - targetCorrespondingSourceObject: {fileID: 658764085373533255, guid: a18bca88ec6334647be231143cc8d93f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 198978994}
   m_SourcePrefab: {fileID: 100100000, guid: a18bca88ec6334647be231143cc8d93f, type: 3}

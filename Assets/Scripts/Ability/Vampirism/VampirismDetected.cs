@@ -1,36 +1,41 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class VampirismDetected : MonoBehaviour
 {
     [SerializeField] private Vampirism _vampirism;
-    [SerializeField] private LayerMask _enemyLayerMask;
     
     private List<Enemy> _enemyDetected = new List<Enemy>();
+    private CircleCollider2D _triggerCollider;
 
-    public List<Enemy> EnemyDetected => _enemyDetected;
+    public IReadOnlyList<Enemy> EnemyDetected => _enemyDetected.ToList();
 
-    private void Update()
+    private void Awake()
     {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, _vampirism.RadiusDrain, _enemyLayerMask);
+        _triggerCollider = GetComponent<CircleCollider2D>();
+        _triggerCollider.isTrigger = true;
+        _triggerCollider.radius = _vampirism.RadiusDrain;
+    }
 
-        foreach (Collider2D hit in hits)
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.TryGetComponent(out Enemy enemy) && _enemyDetected.Contains(enemy) == false)
         {
-            if (hit.gameObject.TryGetComponent(out Enemy enemy))
-            {
-                if (_enemyDetected.Contains(enemy) == false)
-                {
-                    _enemyDetected.Add(enemy);
-                }
-            }
+            _enemyDetected.Add(enemy);
+            enemy.Died += Lost;
+        }    
+    }
 
-            for (int i = _enemyDetected.Count - 1; i >= 0; i--)
-            {
-                if (Vector2.Distance(transform.position, _enemyDetected[i].transform.position) > _vampirism.RadiusDrain)
-                {
-                    _enemyDetected.RemoveAt(i);
-                }
-            }
-        }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.TryGetComponent(out Enemy enemy))
+            Lost(enemy);
+    }
+
+    private void Lost(Enemy enemy)
+    {
+        enemy.Died -= Lost;
+        _enemyDetected.Remove(enemy);
     }
 }

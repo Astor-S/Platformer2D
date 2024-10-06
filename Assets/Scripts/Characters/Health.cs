@@ -7,6 +7,7 @@ public class Health : MonoBehaviour
     private float _minValue = 0;
 
     public event Action<float, float> ValueChanged;
+    public event Action Died;
 
     public float Value { get; private set; }
     public float MaxValue => _maxValue;
@@ -34,7 +35,7 @@ public class Health : MonoBehaviour
         float newHealth = Mathf.Max(Value - damage, _minValue);
         UpdateValue(newHealth);
 
-        if (Value <= 0)
+        if (IsAlive == false)
             ApplyDeath();
     }
 
@@ -46,7 +47,7 @@ public class Health : MonoBehaviour
 
     private void ApplyDeath()
     {
-        if (IsAlive == false)
-            Destroy(gameObject);
+        Died?.Invoke();
+        Destroy(gameObject);
     }
 }
